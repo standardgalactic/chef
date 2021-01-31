@@ -46,7 +46,6 @@ class Chef
         data[:actions][action] = resource.action_description(action)
       end
 
-
       data[:examples] = resource.examples
       data[:introduced] = resource.introduced
       data[:preview] = resource.preview_resource

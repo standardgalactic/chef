@@ -126,12 +126,13 @@ namespace :docs_site do
 
     #
     # Build the actions section of the resource yaml
+    # as a hash of actions to markdown descriptions.
     #
     # @return [Hash]
     #
     def action_list(actions)
       actions = actions.map { |k, v| [k.to_sym, { "markdown" => v } ] }.to_h
-      actions[:nothing] = { "shortcode" => "resources_common_actions_nothing.md"}
+      actions[:nothing] = { "shortcode" => "resources_common_actions_nothing.md" }
       actions
     end
 
@@ -262,7 +263,7 @@ namespace :docs_site do
       r["resource"] = name
       r["resource_description_list"] = build_description(name, data["description"])
       r["resource_new_in"] = data["introduced"] unless data["introduced"].nil?
-      #require 'pry'; binding.pry
+      # require 'pry'; binding.pry
 
       r["syntax_full_code_block"] = generate_resource_block(name, properties, data["default_action"])
       r["syntax_properties_list"] = nil
@@ -280,7 +281,6 @@ namespace :docs_site do
     resources.each do |resource, data|
       # skip some resources we don't directly document
       next if RESOURCES_TO_SKIP.include?(resource)
-
 
       next if ENV["DEBUG"] && !(resource == ENV["DEBUG"])
 

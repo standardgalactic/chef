@@ -1008,7 +1008,7 @@ class Chef
       actions.each do |element|
         case element
         when Array # array of strings/symbols. TODO Should not be possible,
-          element.each { |name|  final_actions << name.to_sym }
+          element.each { |name| final_actions << name.to_sym }
         when Hash # name/description
           element.each_pair do |name, desc|
             name = name.to_sym
@@ -1018,7 +1018,7 @@ class Chef
             # in the action definition.
             action_descriptions[name] = desc unless desc.nil?
           end
-        when Symbol,String
+        when Symbol, String
           final_actions << element.to_sym
         end
       end
@@ -1103,7 +1103,7 @@ class Chef
       #
       # In any case, accept any non-nil description, which will correctly override
       # any specific inherited description.
-      self.action_descriptions[action] = description unless description.nil?
+      action_descriptions[action] = description unless description.nil?
       default_action action if Array(default_action) == [:nothing]
     end
 
@@ -1236,7 +1236,7 @@ class Chef
     #
 
     # FORBIDDEN_IVARS do not show up when the resource is converted to JSON (ie. hidden from data_collector and sending to the chef server via #to_json/to_h/as_json/inspect)
-    FORBIDDEN_IVARS = %i{@run_context @logger @not_if @only_if @enclosing_provider @description @introduced @examples @validation_message @deprecated @default_description @skip_docs @executed_by_runner, @action_descriptions}.freeze
+    FORBIDDEN_IVARS = %i{@run_context @logger @not_if @only_if @enclosing_provider @description @introduced @examples @validation_message @deprecated @default_description @skip_docs @executed_by_runner @action_descriptions}.freeze
     # HIDDEN_IVARS do not show up when the resource is displayed to the user as text (ie. in the error inspector output via #to_text)
     HIDDEN_IVARS = %i{@allowed_actions @resource_name @source_line @run_context @logger @name @not_if @only_if @elapsed_time @enclosing_provider @description @introduced @examples @validation_message @deprecated @default_description @skip_docs @executed_by_runner @action_descriptions}.freeze
 
